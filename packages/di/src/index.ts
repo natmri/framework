@@ -1,0 +1,5 @@
+export { ServicesAccessor, IInstantiationService, createDecorator } from './instantiation'
+export { registerSingleton } from './extensions'
+export { SyncDescriptor, ServiceDescriptor } from './descriptors'
+export { ServiceCollection } from './collection'
+export { InstantiationService } from './service'

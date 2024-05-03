@@ -1,0 +1,25 @@
+{
+  "name": "@natmri/di",
+  "version": "0.0.1",
+  "description": "",
+  "author": "starknt",
+  "license": "MIT",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "stub": "unbuild --stub",
+    "build": "unbuild"
+  }
+}

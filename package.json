@@ -1,0 +1,45 @@
+{
+  "name": "@pkg/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.6",
+  "description": "",
+  "author": "starknt",
+  "license": "MIT",
+  "keywords": [
+    "ts",
+    "typescript",
+    "vite",
+    "vitest",
+    "monorepo",
+    "pnpm",
+    "ci"
+  ],
+  "scripts": {
+    "dev": "pnpm -C playground dev",
+    "new": "esno ./scripts/new.ts",
+    "stub": "pnpm -r stub",
+    "build": "pnpm -r build",
+    "test": "vitest",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.16.1",
+    "@types/node": "^20.12.7",
+    "electron": "^30.0.2",
+    "eslint": "^9.1.1",
+    "esno": "^4.7.0",
+    "lint-staged": "^15.2.2",
+    "pnpm": "^8.15.8",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
+    "unbuild": "^2.0.0",
+    "vitest": "^1.5.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
