@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "ESNext",
     "experimentalDecorators": true,
     "baseUrl": ".",
     "module": "commonjs",
     "paths": {
-      "@natmri/di": ["./packages/di/src/index.ts"]
+      "@natmri/core": ["./packages/core/src/index.ts"],
+      "@natmri/di": ["./packages/di/src/index.ts"],
+      "@natmri/ipc": ["./packages/ipc/src/index.ts"]
     },
     "strict": true,
     "esModuleInterop": true,
