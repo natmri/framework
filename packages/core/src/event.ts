@@ -758,6 +758,50 @@ export class PauseableEmitter<T> extends Emitter<T> {
   }
 }
 
+export class DebounceEmitter<T> extends PauseableEmitter<T> {
+  private readonly _delay: number
+  private _handle: any | undefined
+
+  constructor(options: EmitterOptions & { merge: (input: T[]) => T, delay?: number }) {
+    super(options)
+    this._delay = options.delay ?? 100
+  }
+
+  override fire(event: T): void {
+    if (!this._handle) {
+      this.pause()
+      this._handle = setTimeout(() => {
+        this._handle = undefined
+        this.resume()
+      }, this._delay)
+    }
+    super.fire(event)
+  }
+}
+
+/**
+ * An event emitter that multiplexes many events into a single event.
+ *
+ * @example Listen to the `onData` event of all `Thing`s, dynamically adding and removing `Thing`s
+ * to the multiplexer as needed.
+ *
+ * ```typescript
+ * const anythingDataMultiplexer = new EventMultiplexer<{ data: string }>();
+ *
+ * const thingListeners = DisposableMap<Thing, IDisposable>();
+ *
+ * thingService.onDidAddThing(thing => {
+ *   thingListeners.set(thing, anythingDataMultiplexer.add(thing.onData);
+ * });
+ * thingService.onDidRemoveThing(thing => {
+ *   thingListeners.deleteAndDispose(thing);
+ * });
+ *
+ * anythingDataMultiplexer.event(e => {
+ *   console.log('Something fired data ' + e.data)
+ * });
+ * ```
+ */
 export class EventMultiplexer<T> implements IDisposable {
   private readonly emitter: Emitter<T>
   private hasListeners = false

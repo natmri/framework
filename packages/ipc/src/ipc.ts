@@ -1006,8 +1006,8 @@ export class StaticRouter<TContext = string> implements IClientRouter<TContext> 
 export namespace ProxyChannel {
   type StartsWith<Source extends string, Search extends string, Result = false> =
     Source extends `${infer SourceChar}${infer SourceRest}`
-      ? Search extends `${infer SearchChar}${infer SearchRest}`
-        ? SearchChar extends SourceChar ? StartsWith<SourceRest, SearchRest, true>
+      ? Search extends `${infer Char}${infer Rest}`
+        ? Char extends SourceChar ? StartsWith<SourceRest, Rest, true>
           : Search extends '' ? Result : false
         : Search extends '' ? Result : never
       : never
@@ -1030,9 +1030,7 @@ export namespace ProxyChannel {
   export interface IProxyOptions {
 
     /**
-     * Disables automatic marshalling of `URI`.
-     * If marshalling is disabled, `UriComponents`
-     * must be used instead.
+     * Disables automatic marshalling
      */
     disableMarshalling?: boolean
   }

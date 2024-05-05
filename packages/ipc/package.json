@@ -11,15 +11,24 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
       "default": "./dist/index.d.ts"
-    }
+    },
+    "./adapters/*": "./adapters/*"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "files": [
-    "dist"
+    "./adapters",
+    "./dist",
+    "adapters.d.ts"
   ],
   "scripts": {
     "stub": "unbuild --stub",
     "build": "unbuild"
+  },
+  "peerDependencies": {
+    "electron": ">=12"
+  },
+  "dependencies": {
+    "@natmri/core": "workspace:*"
   }
 }

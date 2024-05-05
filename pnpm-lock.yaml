@@ -44,7 +44,18 @@ importers:
 
   packages/core: {}
 
+  packages/di: {}
+
   packages/framework: {}
+
+  packages/ipc:
+    dependencies:
+      '@natmri/core':
+        specifier: workspace:*
+        version: link:../core
+      electron:
+        specifier: '>=12'
+        version: 30.0.2
 
   playground:
     dependencies:
