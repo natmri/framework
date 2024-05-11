@@ -1,5 +1,5 @@
 {
-  "name": "@pkg/core",
+  "name": "@natmri/framework",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -9,11 +9,9 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
       "default": "./dist/index.d.ts"
     }
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "files": [
     "dist"
@@ -21,5 +19,12 @@
   "scripts": {
     "stub": "unbuild --stub",
     "build": "unbuild"
+  },
+  "peerDependencies": {
+    "electron": ">=12"
+  },
+  "dependencies": {
+    "@natmri/core": "workspace:*",
+    "@natmri/di": "workspace:*"
   }
 }

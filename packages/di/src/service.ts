@@ -1,5 +1,4 @@
 import { ServiceCollection } from './collection'
-import type { SyncDescriptor0 } from './descriptors'
 import { SyncDescriptor } from './descriptors'
 import { Graph } from './graph'
 import { IdleValue } from './helper/idle'

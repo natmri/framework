@@ -46,7 +46,17 @@ importers:
 
   packages/di: {}
 
-  packages/framework: {}
+  packages/framework:
+    dependencies:
+      '@natmri/core':
+        specifier: workspace:*
+        version: link:../core
+      '@natmri/di':
+        specifier: workspace:*
+        version: link:../di
+      electron:
+        specifier: '>=12'
+        version: 30.0.2
 
   packages/ipc:
     dependencies:
@@ -59,16 +69,22 @@ importers:
 
   playground:
     dependencies:
-      vue:
-        specifier: ^3.0.4
-        version: 3.4.26(typescript@5.4.5)
+      '@natmri/framework':
+        specifier: workspace:*
+        version: link:../packages/framework
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
         version: 5.0.4(vite@5.2.10(@types/node@20.12.7))(vue@3.4.26(typescript@5.4.5))
+      electron-vite:
+        specifier: ^2.2.0
+        version: 2.2.0(vite@5.2.10(@types/node@20.12.7))
       vite:
         specifier: ^5.2.10
         version: 5.2.10(@types/node@20.12.7)
+      vue:
+        specifier: ^3.0.4
+        version: 3.4.26(typescript@5.4.5)
 
 packages:
 
@@ -164,6 +180,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
+  '@babel/helper-plugin-utils@7.24.5':
+    resolution: {integrity: sha512-xjNLDopRzW2o6ba0gKbkZq5YWEBaK3PCyTOY1K2P/O07LGMhMqlMXPxwN4S5/RhWuCobT8z0jrlKGlYmeR1OhQ==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-simple-access@7.24.5':
     resolution: {integrity: sha512-uH3Hmf5q5n7n8mz7arjUlDOCbttY/DW4DYhE6FUsjKJ/oYC1kQQUvwEQWxRwUpX9qQKRXeqLwWxrqilMrf32sQ==}
     engines: {node: '>=6.9.0'}
@@ -196,6 +216,12 @@ packages:
     resolution: {integrity: sha512-EOv5IK8arwh3LI47dz1b0tKUb/1uhHAnHJOrjgtQMIpu1uXd9mlFrJg9IUgGUgZ41Ch0K8REPTYpO7B76b4vJg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+
+  '@babel/plugin-transform-arrow-functions@7.24.1':
+    resolution: {integrity: sha512-ngT/3NkRhsaep9ck9uj2Xhv9+xB1zShY3tM3g6om4xxCELwCDN4g4Aq5dRn48+0hasAql7s2hdBOysCfNpr4fw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
 
   '@babel/standalone@7.24.5':
     resolution: {integrity: sha512-Sl8oN9bGfRlNUA2jzfzoHEZxFBDliBlwi5mPVCAWKSlBNkXXJOHpu7SDOqjF6mRoTa6GNX/1kAWG3Tr+YQ3N7A==}
@@ -1325,6 +1351,17 @@ packages:
 
   electron-to-chromium@1.4.752:
     resolution: {integrity: sha512-P3QJreYI/AUTcfBVrC4zy9KvnZWekViThgQMX/VpJ+IsOBbcX5JFpORM4qWapwWQ+agb2nYAOyn/4PMXOk0m2Q==}
+
+  electron-vite@2.2.0:
+    resolution: {integrity: sha512-WvE8KlZTiay9uWqBRvnYuxg2JqIicaNqaz9qFvsZkIae2/FmqZC5jctziyduCuuwVxqJG0Sjh8RlTwSn8xcCoQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1.0.0
+      vite: ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
 
   electron@30.0.2:
     resolution: {integrity: sha512-zv7T+GG89J/hyWVkQsLH4Y/rVEfqJG5M/wOBIGNaDdqd8UV9/YZPdS7CuFeaIj0H9LhCt95xkIQNpYB/3svOkQ==}
@@ -3119,6 +3156,8 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.5
       '@babel/helper-validator-identifier': 7.24.5
 
+  '@babel/helper-plugin-utils@7.24.5': {}
+
   '@babel/helper-simple-access@7.24.5':
     dependencies:
       '@babel/types': 7.24.5
@@ -3151,6 +3190,11 @@ snapshots:
   '@babel/parser@7.24.5':
     dependencies:
       '@babel/types': 7.24.5
+
+  '@babel/plugin-transform-arrow-functions@7.24.1(@babel/core@7.24.5)':
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/helper-plugin-utils': 7.24.5
 
   '@babel/standalone@7.24.5': {}
 
@@ -4259,6 +4303,18 @@ snapshots:
       domhandler: 5.0.3
 
   electron-to-chromium@1.4.752: {}
+
+  electron-vite@2.2.0(vite@5.2.10(@types/node@20.12.7)):
+    dependencies:
+      '@babel/core': 7.24.5
+      '@babel/plugin-transform-arrow-functions': 7.24.1(@babel/core@7.24.5)
+      cac: 6.7.14
+      esbuild: 0.19.12
+      magic-string: 0.30.10
+      picocolors: 1.0.0
+      vite: 5.2.10(@types/node@20.12.7)
+    transitivePeerDependencies:
+      - supports-color
 
   electron@30.0.2:
     dependencies:

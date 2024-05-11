@@ -9,12 +9,10 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
       "default": "./dist/index.d.ts"
     },
     "./adapters/*": "./adapters/*"
   },
-  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "files": [
     "./adapters",

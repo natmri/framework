@@ -2,7 +2,7 @@
   "name": "@pkg/monorepo",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.0",
   "description": "",
   "author": "starknt",
   "license": "MIT",
@@ -17,7 +17,6 @@
   ],
   "scripts": {
     "dev": "pnpm -C playground dev",
-    "new": "esno ./scripts/new.ts",
     "stub": "pnpm -r stub",
     "build": "pnpm -r build",
     "test": "vitest",
